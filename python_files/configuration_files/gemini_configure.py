@@ -83,7 +83,7 @@ class GeminiModel():
         """Initialize GeminiModel and configure model to use
         """
         
-        self._model_name = "gemini-1.5-pro"
+        self._model_name = "gemini-flash-latest"
         self._context = "you are a helpful assistant"
         
         self._history = [{

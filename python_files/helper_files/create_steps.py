@@ -202,7 +202,7 @@ def get_small_steps(query: str) -> list:
     gemini = load_class("GeminiModel")
 
     kb_prompt = get_kb_prompt("get_small-steps")
-    gemini._set_model("gemini-1.5-flash", kb_prompt)
+    gemini._set_model("gemini-flash-lite-latest", kb_prompt)
 
     response = gemini._query_model(query)
     print(response)

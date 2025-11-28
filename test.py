@@ -28,7 +28,7 @@ try:
     from python_files.configuration_files.gemini_configure import GeminiModel
 
     model = GeminiModel()
-    model._set_model("gemini-1.5-flash", f"The google search found this: {query_results}")
+    model._set_model("gemini-flash-lite-latest", f"The google search found this: {query_results}")
 
     response = model._query_model(query_to_search)
     print(response)

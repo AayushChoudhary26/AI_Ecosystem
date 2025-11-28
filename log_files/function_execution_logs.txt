@@ -1,1 +1,37 @@
 Got news data for stocks and stored it in json_files/Y_Finance/market_news.json
+Searched for news on the topic: Artificial Intelligence, but it is not in the list of available topics, so could not get the results.
+Searched for news on the topic: Artificial Intelligence, but it is not in the list of available topics, so could not get the results.
+Searched for news on the topic: Artificial Intelligence, but it is not in the list of available topics, so could not get the results.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: text_files/news_articles.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: text_files/news_articles.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: text_files/news_articles.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: /home/user1/Projects/AI_Ecosystem/results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: /tmp/test_output.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched for news for the keyword: Artificial Intelligence, and saved the results in the file: results.txt.
+Searched google for query Artificial Intelligence and stored search results in file search_results.json.
+Searched for news for the keyword: Bynry, and saved the results in the file: results.txt.
+Searched google for query Bynry Smart360 and stored search results in file search_results.json.

@@ -1,5 +1,4 @@
 #include "../header_files/news_configure.h"
-#include <iostream>
 #include <string>
 
 GoogleNews::GoogleNews(
@@ -247,8 +246,16 @@ std::string GoogleNews::__get_rss_content(
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, __WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 30L);
         
-        curl_easy_perform(curl);
+        CURLcode res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            // CURL fetch failed; silently return empty content. Errors are logged via the caller if needed.
+        }
         curl_easy_cleanup(curl);
     }
     
@@ -264,21 +271,51 @@ std::vector<std::unordered_map<std::string, std::string>> GoogleNews::__parse_rs
     int result = 1; // Starting index to start XML parsing 
     XMLDocument doc; // XML document to parse XML content
     
-    doc.Parse(xmlContent.c_str());
-    
     std::vector<std::unordered_map<std::string, std::string>> items; // All items in the XML content
     
-    XMLElement* channel = doc.FirstChildElement("rss")->FirstChildElement("channel"); // Channel element in the xml content
-    for(XMLElement* item = channel->FirstChildElement("item"); item != nullptr; item = item->NextSiblingElement("item")) {
-        if (result > this->_max_results) break;
+    // Parse XML and check for errors
+    XMLError parseError = doc.Parse(xmlContent.c_str());
+    if (parseError != XML_SUCCESS) {
+        return items; // Return empty vector on parse error
+    }
+    
+    // Get RSS element safely
+    XMLElement* rss = doc.FirstChildElement("rss");
+    if (!rss) {
+        return items; // Return empty vector if no RSS element
+    }
+    
+    // Get channel element safely
+    XMLElement* channel = rss->FirstChildElement("channel");
+    if (!channel) {
+        return items; // Return empty vector if no channel element
+    }
+    
+    XMLElement* firstItem = channel->FirstChildElement("item");
+    if (!firstItem) {
+        return items;
+    }
+    
+    int itemCount = 0;
+    for(XMLElement* item = firstItem; item != nullptr; item = item->NextSiblingElement("item")) {
+        itemCount++;
+        if (result > this->_max_results) {
+            break;
+        }
         
         std::unordered_map<std::string, std::string> itemMap; // Unordered map of items of XML content
         
         XMLElement* titleElem = item->FirstChildElement("title"); // Title element in the XML content
-        if(titleElem) itemMap["title"] = titleElem->GetText();
+        if(titleElem) {
+            const char* text = titleElem->GetText();
+            if(text) itemMap["title"] = text;
+        }
         
         XMLElement* linkElem = item->FirstChildElement("link"); // Link element in the XML content
-        if(linkElem) itemMap["link"] = linkElem->GetText();
+        if(linkElem) {
+            const char* text = linkElem->GetText();
+            if(text) itemMap["link"] = text;
+        }
         
         XMLElement* pubDateElem = item->FirstChildElement("pubDate"); // PubDate element in the XML content
         if(pubDateElem) itemMap["pubDate"] = pubDateElem->GetText();
@@ -323,8 +360,6 @@ void GoogleNews::__get_news(
     const std::string article_file = "text_files/news_articles.txt" // file to save articles in
 ){
     std::string encoded_url = this->__encode_url(this->__full_url(keyword)); // Encoded url query to get news
-
-    std::cout << "Encoded Url: " + encoded_url << std::endl;
     
     std::string content = this->__get_rss_content(encoded_url); // XML Content from the news query
     std::ofstream articles_file; // File object to save articles

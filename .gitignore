@@ -2,3 +2,7 @@
 secret_files/
 build
 AI_Ecosystem
+
+venv/
+__pycache__/
+*.pyc
